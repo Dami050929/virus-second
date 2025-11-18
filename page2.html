@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="style2.css">
+    <style>
+        #notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+           
+            z-index: 1000;
+        }
+
+        .notification {
+            width: 350px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 배경 이미지 -->
+    <img class="background2" src="background2.png" alt="background2">
+    <img class="folder" src="folder.png" alt="folder">
+    <img class="folder2" src="folder.png" alt="folder2">
+    <img class="folder3" src="folder.png" alt="folder3">
+    
+
+    <!-- 알림 컨테이너 -->
+    <div id="notification-container"></div>
+
+    <script>
+        function showNotification(imageSrc) {
+            const container = document.getElementById('notification-container');
+            const img = document.createElement('img');
+            img.src = imageSrc;
+            img.className = 'notification';
+
+            // 맨 위에 추가
+            container.prepend(img);
+
+            // 트랜지션 적용 위해 살짝 지연 후 show 클래스 추가
+            setTimeout(() => {
+                img.classList.add('show');
+            }, 50);
+
+            // 알림 개수 제한 (예: 최대 3개)
+            if (container.children.length > 3) {
+                container.lastChild.remove();
+            }
+            img.addEventListener('click', () => {
+        window.location.href = 'page3.html'; // ← 여기에 이동할 페이지 경로 입력
+    });
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                showNotification('message1.png');
+
+              
+
+                // 3초 후 다음 알림 표시
+                setTimeout(() => {
+                    showNotification('message2.png');
+                }, 3000);
+
+            }, 1500);
+        });
+    </script>
+
+</body>
+</html>

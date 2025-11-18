@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style3.css">
+    <style>
+        .xray-text {
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: red;
+            font-size: 20px;
+            font-family: 'Courier New', monospace;
+            background: black;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 0 10px red;
+            transition: all 0.3s ease;
+            display: none; /* 처음에는 숨김 */
+        }
+
+        .xray-text:hover {
+            color: white;
+            box-shadow: 0 0 20px red;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .warning {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- warning.gif -->
+    <img class="warning" src="warning.gif" alt="warning">
+
+    <!-- X-ray 스캔 텍스트 -->
+    <p class="xray-text" onclick="location.href='page4.html'">
+        Suspicious activity detected. Click here to initiate <strong>X-RAY scan</strong>.
+    </p>
+
+    <script>
+        // 19초 후에 텍스트를 보이도록 설정
+        setTimeout(() => {
+            document.querySelector('.xray-text').style.display = 'block';
+        }, 10000); // 10000ms (19초 후)
+    </script>
+</body>
+</html>
